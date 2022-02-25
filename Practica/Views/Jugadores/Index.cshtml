@@ -1,0 +1,90 @@
+﻿
+@model Practica.ViewModels.ListadoEquipos_Y_Jugadores
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--[ Lista de Jugadores ]-->
+<section class="mt-5 mb-3">
+    <div class="mb-3">
+        <h3>Listado de Jugadores</h3>
+        <p class="small">
+            En la siguiente tabla se muestra la lista de jugadores
+        </p>
+        <a class="btn-success rounded-pill shadow-sm p-2  text-decoration-none mb-2" 
+            asp-area="" asp-controller="Jugadores" asp-action="CrearJugador">
+            Agregar Jugador
+        </a>
+    </div>
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Fecha Nacimiento</th>
+              <th>Pasaporte</th>
+              <th>Direccion</th>
+              <th>Sexo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var jugador in Model.ListadoDeJugadores)
+            {
+                  <tr>
+                      <th>@jugador.Id</th>
+                      <td>@jugador.Nombre</td>
+                      <td>@jugador.Apellido</td>
+                      <td>@jugador.FechaNacimiento</td>
+                      <td>@jugador.Pasaporte</td>
+                      <td>@jugador.Direccion</td>
+                      <td>@(jugador.Sexo == true ? "Masculino" : "Femenino") </td>
+                 </tr>
+            }
+          </tbody>
+        </table>
+    </div>
+</section>
+
+<br />
+
+<!--[ Lista de Equipos ]-->
+<section class="mt-5">
+    <div class="mb-3">
+        <h3>Listado de Equipos</h3>
+        <p class="small">
+            En la siguiente tabla se muestra la lista de Equipos
+        </p>
+         <a class="btn-success rounded-pill shadow-sm p-2  text-decoration-none mb-2" 
+            asp-area="" asp-controller="Jugadores" asp-action="CrearEquipo">
+            Agregar Equipo
+        </a>
+    </div>
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#ID</th>
+              <th>Nombre</th>
+              <th>Pais</th>
+              <th>Estado</th>
+              <th>Fecha de Creación</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var equipo in Model.ListadoDeEquipos)
+            {
+                  <tr>
+                      <th>@equipo.Id</th>
+                      <td>@equipo.Nombre</td>
+                      <td>@equipo.Pais</td>
+                        <td>@(equipo.Estado == true ? "Activo" : "Inactivo") </td>
+                      <td>@equipo.FechaDeCreacion</td>
+                 </tr>
+            }
+          </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,53 @@
+﻿@model Practica.Models.Equipo
+
+@{
+    ViewData["Title"] = "Crear Equipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Crear un nuevo Equipo</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Jugadores" asp-action="AgregarEquipo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="Nombre" class="control-label fw-bold"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Pais" class="control-label fw-bold"></label>
+    
+                 @Html.DropDownListFor(model => model.Pais, (IEnumerable<SelectListItem>)ViewData["Paises"], 
+                 "--Paises--", new { @class = "form-control"} )  
+
+                <span asp-validation-for="Pais" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                 <label class="text-dark fw-bold pl-0 ml-0">Estado</label>
+                <br />
+                <label class="form-check-label">
+                    <input type="radio" class="form-radio-input" value="true" asp-for="Estado" /> Activo
+                    <input type="radio" class="form-radio-input" value="false" asp-for="Estado" /> Inactivo
+                </label>
+            </div>
+            <div class="form-group mt-3">
+                <label class="text-dark fw-bold">Fecha de Creación</label>
+                <input asp-for="FechaDeCreacion" class="form-control" />
+                <span asp-validation-for="FechaDeCreacion" class="text-danger"></span>
+            </div>
+             <div class="form-group mt-4">
+                <input type="submit" value="Agregar Equipo" class="btn btn-success rounded-pill shadow-sm p-2  text-decoration-none mb-2" />
+                
+                <a class="btn-secondary rounded-pill shadow-sm p-2  text-decoration-none mb-2" asp-action="Index">
+                    Volver a la lista
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
